@@ -1,13 +1,17 @@
 import requests
 from pprint import pprint
+from dotenv import load_dotenv
+import os
 
-key = '38e34c84-fa18-4149-aa19-0e9a1f0eaa55'
+load_dotenv()
+
+key =  os.getenv('PROJECT_API_KEY')
 
 def getAssociatedWords(word):
     res = requests.get('https://api.wordassociations.net/associations/v1.0/json/search?apikey=' + key +'&text=' + word + '&lang=en&limit=300')
     return res.json()
 
-words = ['cat', 'dog']
+words = ['helicopter', 'board']
 associated = []
 for word in words:
     data = getAssociatedWords(word)
@@ -15,7 +19,7 @@ for word in words:
     associated.append(items)
 
 best = []
-bestW = []
+
 for i in associated:
     for j in associated:
         if i != j:
@@ -26,7 +30,7 @@ for i in associated:
                         print(l)
                         print(k['weight'] + l['weight'])
                         print('-')
-                        if k['weight'] > 30 and l['weight'] > 30:
+                        if k['weight'] > 20 and l['weight'] > 20:
                             if k['item'].lower() not in words:
                                 best.append({'word': k['item'], 'weight': k['weight'] + l['weight']})
 
