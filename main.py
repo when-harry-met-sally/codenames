@@ -11,8 +11,8 @@ dictionary = {
     "tree": ['branch', 'leaves', 'squirrel'],
     "garden": ['branch', 'gnome', 'vegetation'],
     "olive": ['martini', 'branch', 'sodium'],
-    "apple": ['cider', '', 'newton'],
-    "autumn": ['leaves', 'fall', 'season', 'halloween'],
+    "apple": ['cider', 'newton'],
+    "autumn": ['leaves', 'fall', 'season', 'halloween', 'branch'],
     "pumpkin": ['halloween', 'branch']
 }
 pprint(dictionary)
@@ -45,25 +45,23 @@ for i in dictionary:
 print(words)
 groupings = findGroupings(words)
 for g in groupings:
+    print('-----', g, '----')
     matches = []
     for i in range(0, len(g)-1):
         for j in range(i+1, len(g)):
             a = dictionary[g[i]]
             b = dictionary[g[j]]
-            # print(a)
-            # print(b)
-            m = []
             for c in a:
                 for d in b:
-                    # if c["item"]== d["item"] and c not in m:
-                    if c == d:
-                        m = c
-            # print('matches-', m)
-            # print(m)
-            matches.append(m)
-    if [] not in matches:
-        print('---------------------------------------------')
-        print(g)
-        pprint(matches)
-        print('---------------------------------------------')
+                    print(b, ':', c, '-', a, ':', d)
+            #         # if c["item"]== d["item"] and c not in m:
+            #         if c == d:
+            #             print(c, '-', d)
+            # # print('matches-', m)
+            # # print(m)
+            # matches.append(m)
+    # print('---------------------------------------------')
+    # print(g)
+    # pprint(matches)
+    # print('---------------------------------------------')
 
