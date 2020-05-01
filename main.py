@@ -42,3 +42,11 @@ for g in groupings:
         print(matches)
         print('---------------------------------------------')
 
+key =  os.getenv('PROJECT_API_KEY')
+
+def getAssociatedWords(word):
+    res = requests.get('https://api.wordassociations.net/associations/v1.0/json/search?apikey=' + key +'&text=' + word + '&lang=en&limit=300')
+    return res.json()
+
+test = getAssociatedWords("tree")
+print(test)
