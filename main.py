@@ -1,4 +1,6 @@
 import itertools
+import os
+import requests
 
 dictionary = {
     "tree": ['branch', 'leaves', 'squirrel'],
@@ -42,11 +44,13 @@ for g in groupings:
         print(matches)
         print('---------------------------------------------')
 
-key =  os.getenv('PROJECT_API_KEY')
-
 def getAssociatedWords(word):
+    key =  os.getenv('PROJECT_API_KEY')
+
     res = requests.get('https://api.wordassociations.net/associations/v1.0/json/search?apikey=' + key +'&text=' + word + '&lang=en&limit=300')
-    return res.json()
+    res = res.json()
+    res = res['response'][0]['items']
+    return res
 
 test = getAssociatedWords("tree")
 print(test)
