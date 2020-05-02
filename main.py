@@ -7,20 +7,26 @@ import itertools
 load_dotenv()
 
 key =  os.getenv('PROJECT_API_KEY')
+# dictionary = {
+#     "tree": [{"item": 'branch'}, {"item": 'leaves'}, {"item": 'squirrel'}],
+#     "garden": [{"item": 'branch'}, {"item": 'gnome'}, {"item": 'vegetation'}],
+#     "olive": [{"item": 'martini'}, {"item": 'branch'}, {"item": 'sodium'}],
+#     "apple": [{"item": 'cider'}, {"item": 'newton'}],
+#     "autumn": [{"item": 'leaves'}, {"item": 'fall'}, {"item": 'season'}, {"item": 'halloween'}, {"item": 'branch'}],
+#     "pumpkin": [{"item": 'halloween'}, {"item": 'branch'}]
+# }
+
+def getAssociatedWords(word):
+    res = requests.get('https://api.wordassociations.net/associations/v1.0/json/search?apikey=' + key +'&text=' + word + '&lang=en&limit=300')
+    res = res.json()
+    res = res['response'][0]['items']
+    return res
+
 dictionary = {
-    "tree": ['branch', 'leaves', 'squirrel'],
-    "garden": ['branch', 'gnome', 'vegetation'],
-    "olive": ['martini', 'branch', 'sodium'],
-    "apple": ['cider', 'newton'],
-    "autumn": ['leaves', 'fall', 'season', 'halloween', 'branch'],
-    "pumpkin": ['halloween', 'branch']
+    "tree": getAssociatedWords("tree"),
+    "garden": getAssociatedWords("garden"),
+    "olive": getAssociatedWords("olive")
 }
-pprint(dictionary)
-# def getAssociatedWords(word):
-#     res = requests.get('https://api.wordassociations.net/associations/v1.0/json/search?apikey=' + key +'&text=' + word + '&lang=en&limit=50')
-#     res = res.json()
-#     res = res['response'][0]['items']
-#     return res
 
 
 def findGroupings(words):
@@ -28,16 +34,6 @@ def findGroupings(words):
     for i in range(1, len(words)):
         groupings.extend(list(itertools.combinations(words, i+1)))
     return groupings
-
-# tree = getAssociatedWords("tree")
-# garden = getAssociatedWords("garden")
-# apple = getAssociatedWords("apple")
-# dictionary = {
-#     "tree": tree,
-#     "garden": garden,
-#     "apple": apple
-# }
-
 
 words = []
 for i in dictionary:
@@ -54,7 +50,7 @@ for g in groupings:
             similiar = []
             for c in a:
                 for d in b:
-                    if c == d:
+                    if c["item"] == d["item"]:
                         similiar.append(c)
             
             matches.append(similiar)
