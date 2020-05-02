@@ -48,18 +48,27 @@ for g in groupings:
     print('-----', g, '----')
     matches = []
     for i in range(0, len(g)-1):
+        a = dictionary[g[i]]
         for j in range(i+1, len(g)):
-            a = dictionary[g[i]]
             b = dictionary[g[j]]
+            similiar = []
             for c in a:
                 for d in b:
-                    print(b, ':', c, '-', a, ':', d)
-            #         # if c["item"]== d["item"] and c not in m:
-            #         if c == d:
-            #             print(c, '-', d)
-            # # print('matches-', m)
-            # # print(m)
-            # matches.append(m)
+                    if c == d:
+                        similiar.append(c)
+            
+            matches.append(similiar)
+    true = []
+    if len(matches) != 0:
+        initial = matches[0]
+        matches.pop(0)
+        for i in initial:
+            found = True
+            for j in matches:
+                if i not in j:
+                    found = False
+            if found == True:
+                print(i)
     # print('---------------------------------------------')
     # print(g)
     # pprint(matches)
