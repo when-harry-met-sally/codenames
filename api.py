@@ -3,7 +3,13 @@ from pprint import pprint
 from dotenv import load_dotenv
 import os
 import sys
-import itertools 
+import itertools
+from flask import Flask, request
+from flask import jsonify
+import requests
+import os
+import urllib 
+from flask_cors import CORS
 load_dotenv()
 
 key =  os.getenv('PROJECT_API_KEY')
@@ -28,12 +34,10 @@ def getAssociatedWords(word):
     res = res['response'][0]['items']
     return res
 
-def handleArgs():
+def handleArgs(words):
     dictionary = {}
-    for i in range(1, len(sys.argv)):
-        arg = sys.argv[i]
-        if i != 0:
-            dictionary[arg] = getAssociatedWords(arg)
+    for word in words:
+        dictionary[word] = getAssociatedWords(word)
     return dictionary
 
 def findGroupings(words):
@@ -47,7 +51,6 @@ def solve(dictionary):
     words = []
     for i in dictionary:
         words.append(i)
-    print(words)
     groupings = findGroupings(words)
     for g in groupings:
         matches = []
@@ -77,6 +80,18 @@ def solve(dictionary):
         for i in g:
             k += i + " "
         solution[k] = true
-        return solution
-dictionary = handleArgs()
-solve(dictionary)
+    return solution
+
+app = Flask(__name__)
+cors = CORS(app)
+
+@app.route("/", methods=['POST'])
+def main():
+    data = request.get_json()
+    words = data["words"]
+    dictionary = handleArgs(words)
+    return jsonify(solve(dictionary))
+
+if __name__ == '__main__':
+    app.run()
+
