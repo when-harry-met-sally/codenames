@@ -1,5 +1,4 @@
 import requests
-from pprint import pprint
 from dotenv import load_dotenv
 import os
 import sys
@@ -9,10 +8,7 @@ from flask import jsonify
 import requests
 import os
 import urllib 
-from flask_cors import CORS
-load_dotenv()
-
-key =  os.getenv('PROJECT_API_KEY')
+key = "38e34c84-fa18-4149-aa19-0e9a1f0eaa55"
 
 # dictionary = {
 #     "tree": [{"item": 'branch'}, {"item": 'leaves'}, {"item": 'squirrel'}],
@@ -83,7 +79,6 @@ def solve(dictionary):
     return solution
 
 app = Flask(__name__)
-cors = CORS(app)
 
 @app.route("/", methods=['POST'])
 def main():
