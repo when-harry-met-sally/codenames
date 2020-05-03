@@ -80,12 +80,12 @@ def solve(dictionary):
 
 app = Flask(__name__)
 
-@app.route("/api", methods=['POST'])
-def main():
-    data = request.get_json()
-    words = data["words"]
-    dictionary = handleArgs(words)
-    return jsonify(solve(dictionary))
+# @app.route("/api", methods=['POST'])
+# def main():
+#     data = request.get_json()
+#     words = data["words"]
+#     dictionary = handleArgs(words)
+#     return jsonify(solve(dictionary))
 
 @app.route("/", methods=['GET'])
 def main():
