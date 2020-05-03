@@ -81,7 +81,7 @@ def solve(dictionary):
 app = Flask(__name__)
 
 @app.route("/api", methods=['POST'])
-def main():
+def api():
     data = request.get_json()
     words = data["words"]
     dictionary = handleArgs(words)
