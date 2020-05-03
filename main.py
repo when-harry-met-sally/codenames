@@ -87,6 +87,10 @@ def main():
     dictionary = handleArgs(words)
     return jsonify(solve(dictionary))
 
+@app.route("/", methods=['GET'])
+def main():
+    return "Make POST with word array"
+
 if __name__ == '__main__':
     app.run()
 
