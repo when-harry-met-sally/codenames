@@ -8,21 +8,8 @@ from flask import jsonify
 import requests
 import os
 import urllib 
+from flask_cors import CORS
 key = "38e34c84-fa18-4149-aa19-0e9a1f0eaa55"
-
-# dictionary = {
-#     "tree": [{"item": 'branch'}, {"item": 'leaves'}, {"item": 'squirrel'}],
-#     "garden": [{"item": 'branch'}, {"item": 'gnome'}, {"item": 'vegetation'}],
-#     "olive": [{"item": 'martini'}, {"item": 'branch'}, {"item": 'sodium'}],
-#     "apple": [{"item": 'cider'}, {"item": 'newton'}],
-#     "autumn": [{"item": 'leaves'}, {"item": 'fall'}, {"item": 'season'}, {"item": 'halloween'}, {"item": 'branch'}],
-#     "pumpkin": [{"item": 'halloween'}, {"item": 'branch'}]
-# }
-# dictionary = {
-#     "tree": getAssociatedWords("tree"),
-#     "garden": getAssociatedWords("garden"),
-#     "olive": getAssociatedWords("olive")
-# } 
 
 def getAssociatedWords(word):
     res = requests.get('https://api.wordassociations.net/associations/v1.0/json/search?apikey=' + key +'&text=' + word + '&lang=en&limit=300')
@@ -79,7 +66,7 @@ def solve(dictionary):
     return solution
 
 app = Flask(__name__)
-
+CORS(app)
 @app.route("/api", methods=['POST'])
 def api():
     data = request.get_json()
