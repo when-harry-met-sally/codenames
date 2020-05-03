@@ -80,7 +80,7 @@ def solve(dictionary):
 
 app = Flask(__name__)
 
-@app.route("/", methods=['POST'])
+@app.route("/api", methods=['POST'])
 def main():
     data = request.get_json()
     words = data["words"]
@@ -89,7 +89,7 @@ def main():
 
 @app.route("/", methods=['GET'])
 def main():
-    return "Make POST with word array"
+    return "See /api"
 
 if __name__ == '__main__':
     app.run()
