@@ -37,7 +37,12 @@ def solve(dictionary):
                     for c in a:
                         for d in b:
                             if c["item"] == d["item"]:
-                                similiar.append(c)
+                                e = {
+                                    "item": c["item"],
+                                    "weight1": c["weight"],
+                                    "weight2": d["weight"],
+                                }
+                                similiar.append(e)
                     matches.append(similiar)
             true = []
             if len(matches) != 0:
