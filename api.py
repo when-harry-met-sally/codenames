@@ -7,9 +7,9 @@ CORS(app)
 def handleArgs(words):
     dictionary = {}
     for word in words:
-        dictionary[arg] = getAssociatedWords(word)
+        dictionary[word] = getAssociatedWords(word)
     return dictionary
-    
+
 @app.route("/api", methods=['POST'])
 def api():
     data = request.get_json()
