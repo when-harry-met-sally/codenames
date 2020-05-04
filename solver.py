@@ -39,8 +39,6 @@ def solve(dictionary):
                             if c["item"] == d["item"]:
                                 e = {
                                     "item": c["item"],
-                                    "weight1": c["weight"],
-                                    "weight2": d["weight"],
                                 }
                                 similiar.append(e)
                     matches.append(similiar)
