@@ -1,6 +1,7 @@
 import sys
 from solver import solve, getAssociatedWords
 from pprint import pprint
+
 # dictionary = {
 #     "tree": [{"item": 'branch'}, {"item": 'leaves'}, {"item": 'squirrel'}],
 #     "garden": [{"item": 'branch'}, {"item": 'gnome'}, {"item": 'fruit'}],
@@ -14,6 +15,7 @@ from pprint import pprint
 #     "garden": getAssociatedWords("garden"),
 #     "olive": getAssociatedWords("olive")
 # } 
+
 import sys
 from solver import solve, getAssociatedWords
 from pprint import pprint
