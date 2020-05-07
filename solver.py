@@ -7,6 +7,16 @@ from pprint import pprint
 load_dotenv()
 
 key =  os.getenv('PROJECT_API_KEY')
+def convertToJSON(dictionary):
+    pprint('--converting to json friendly object--')
+    friendly = {}
+    for i in dictionary:
+        newKey = ''
+        for j in i:
+            newKey += j + ' '
+        friendly[newKey] = list(dictionary[i])
+    return friendly
+
 def getAssociatedWords(word):
     res = requests.get('https://api.wordassociations.net/associations/v1.0/json/search?apikey=' + key +'&text=' + word + '&lang=en&limit=300')
     res = res.json()
@@ -23,17 +33,9 @@ def solve(dictionary):
             matches = []
             for k in dictionary[a]:
                 for l in dictionary[b]:
-                    if k['item'] == l['item']:
+                    if k == l and k not in matches:
                         matches.append(k)
             solution.append(joined)
             dictionary[joined] = tuple(matches)
 
-    pprint('--converting to json friendly object--')
-    friendly = {}
-    for i in dictionary:
-        newKey = ''
-        for j in i:
-            newKey += j + ' '
-        friendly[newKey] = list(dictionary[i])
-    return friendly
-
+    return convertToJSON(dictionary)
