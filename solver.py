@@ -13,31 +13,22 @@ def getAssociatedWords(word):
     res = res['response'][0]['items']
     return res
 
-solution = {}
 def solve(dictionary):
-    test1 = solve2(dictionary)
-    print('first iteration')
-    pprint(test1)
-    print('second iteration')
-    test2 = solve2(test1)
-    pprint(test2)
-    
+    solution = [i for i in dictionary]
+    pprint(solution)
+    print('------------')
+    for i in range(0, len(solution)-1):
+        for j in range(i+1, len(solution)):
+            a = solution[i]
+            b = solution[j]
+            joined = tuple(set(a+b))
+            matches = []
+            for k in dictionary[a]:
+                for l in dictionary[b]:
+                    if k == l:
+                        matches.append(k)
+            solution.append(joined)
+            dictionary[joined] = tuple(matches)
+    pprint(dictionary)
+    return dictionary
 
-def solve2(dictionary):
-    words = [i for i in dictionary]
-    temp = {}
-    for i in range(0, len(words)-1):
-        a = words[i]
-        for j in range(1, len(words)):
-            b = words[j]
-            if a != b:
-                similiar = []
-                joined = tuple(set(a+b))
-                # print(joined)
-                for c in dictionary[a]:
-                    for d in dictionary[b]:
-                        if c == d:
-                            similiar.append(c)
-                temp[joined] = similiar
-
-    return temp

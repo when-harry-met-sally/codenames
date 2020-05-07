@@ -6,10 +6,12 @@ dictionary = {
     # "tree": [{"item": 'branch'}, {"item": 'leaves'}, {"item": 'squirrel'}],
     # "garden": [{"item": 'branch'}, {"item": 'gnome'}, {"item": 'fruit'}],
     # "olive": [{"item": 'martini'}, {"item": 'branch'}, {"item": 'fruit'}],
-    ("apple",): ({"item": 'cider'}, {"item": 'fall'}, {"item": "branch"}),
-    ("fall",): ({"item": 'leaves'}, {"item": 'fall'}, {"item": 'halloween'}, {"item": 'branch'}),
-    ("pumpkin",): ({"item": 'branch'}, {"item": "fall"},),
-    ("tree",): ({"item": 'branch'},)
+    ("apple",): ('cider', 'fall', "branch"),
+    ("fall",): ('eaves', 'fall','halloween', 'branch'),
+    ("pumpkin",): ('branch', "fall"),
+    ("tree",): ('branch',),
+    ("pineapple",): ('branch',),
+    ("crack",): ('branch',)
 }
 # dictionary = {
 #     "tree": getAssociatedWords("tree"),
