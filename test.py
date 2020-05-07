@@ -1,7 +1,7 @@
 import sys
 from solver import solve, getAssociatedWords
 from pprint import pprint
-
+import time
 # dictionary = {
 #     "tree": [{"item": 'branch'}, {"item": 'leaves'}, {"item": 'squirrel'}],
 #     "garden": [{"item": 'branch'}, {"item": 'gnome'}, {"item": 'fruit'}],
@@ -28,6 +28,8 @@ def handleArgs():
     return dictionary
 
 dictionary = handleArgs()
+start = time.time()
 solution = solve(dictionary)
+end = time.time()
 print('--------------SOLUTION--------------')
-pprint(solution)
+print(end-start)
