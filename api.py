@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask import jsonify
 from flask_cors import CORS
 from solver import solve, getAssociatedWords
+from pprint import pprint
 app = Flask(__name__)
 CORS(app)
 def handleArgs(words):
@@ -13,6 +14,8 @@ def handleArgs(words):
 @app.route("/api", methods=['POST'])
 def api():
     data = request.get_json()
+    pprint(data)
+    print('------------')
     words = data["words"]
     dictionary = handleArgs(words)
     solution = solve(dictionary)

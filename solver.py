@@ -35,9 +35,15 @@ def solve(dictionary):
             matches = []
             for k in dictionary[a]:
                 for l in dictionary[b]:
-                    if k['item'] == l['item']:
+                    if k['item'] == l['item'] and not itemInArray(matches, k['item']):
                         matches.append(k)
             solution.append(joined)
             dictionary[joined] = tuple(matches)
 
     return convertToJSON(dictionary)
+
+def itemInArray(array, item):
+    for a in array:
+        if a['item'] == item:
+            return True
+    return False
