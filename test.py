@@ -1,23 +1,19 @@
 import sys
 from solver import solve, getAssociatedWords
 from pprint import pprint
+import time
 
-dictionary = {
-    # "tree": [{"item": 'branch'}, {"item": 'leaves'}, {"item": 'squirrel'}],
-    # "garden": [{"item": 'branch'}, {"item": 'gnome'}, {"item": 'fruit'}],
-    # "olive": [{"item": 'martini'}, {"item": 'branch'}, {"item": 'fruit'}],
-    ("apple",): ('cider', 'fall', "branch"),
-    ("fall",): ('eaves', 'fall','halloween', 'branch'),
-    ("pumpkin",): ('branch', "fall"),
-    ("tree",): ('branch',),
-    ("pineapple",): ('branch',),
-    ("crack",): ('branch',)
-}
 # dictionary = {
-#     "tree": getAssociatedWords("tree"),
-#     "garden": getAssociatedWords("garden"),
-#     "olive": getAssociatedWords("olive")
-# } 
+#     # "tree": [{"item": 'branch'}, {"item": 'leaves'}, {"item": 'squirrel'}],
+#     # "garden": [{"item": 'branch'}, {"item": 'gnome'}, {"item": 'fruit'}],
+#     # "olive": [{"item": 'martini'}, {"item": 'branch'}, {"item": 'fruit'}],
+#     ("apple",): ('cider', 'fall', "branch"),
+#     ("fall",): ('eaves', 'fall','halloween', 'branch'),
+#     ("pumpkin",): ('branch', "fall"),
+#     ("tree",): ('branch',),
+#     ("pineapple",): ('branch',),
+#     ("crack",): ('',)
+# }
 
 import sys
 from solver import solve, getAssociatedWords
@@ -27,10 +23,16 @@ def handleArgs():
     for i in range(1, len(sys.argv)):
         arg = sys.argv[i]
         if i != 0:
-            dictionary[arg] = getAssociatedWords(arg)
+            dictionary[tuple([arg])] = tuple(getAssociatedWords(arg))
     return dictionary
 
-# dictionary = handleArgs()
+dictionary = handleArgs()
+# pprint(dictionary)
+# print('-----')
+start = time.time()
 solution = solve(dictionary)
+end = time.time()
+
+print(end-start)
 # print('--------------SOLUTION--------------')
 # pprint(solution)

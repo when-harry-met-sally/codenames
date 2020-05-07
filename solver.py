@@ -15,8 +15,6 @@ def getAssociatedWords(word):
 
 def solve(dictionary):
     solution = [i for i in dictionary]
-    pprint(solution)
-    print('------------')
     for i in range(0, len(solution)-1):
         for j in range(i+1, len(solution)):
             a = solution[i]
@@ -25,10 +23,10 @@ def solve(dictionary):
             matches = []
             for k in dictionary[a]:
                 for l in dictionary[b]:
-                    if k == l:
+                    if k['item'] == l['item']:
                         matches.append(k)
             solution.append(joined)
             dictionary[joined] = tuple(matches)
-    pprint(dictionary)
+    # pprint(dictionary)
     return dictionary
 
