@@ -27,13 +27,10 @@ def handleArgs():
     return dictionary
 
 dictionary = handleArgs()
-# pprint(dictionary)
-# print('-----')
+
 start = time.time()
 solution = solve(dictionary)
-print(len(solution))
 end = time.time()
 
-print(end-start)
-# print('--------------SOLUTION--------------')
-# pprint(solution)
+duration = end-start
+print('time:', duration)

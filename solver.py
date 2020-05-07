@@ -27,6 +27,13 @@ def solve(dictionary):
                         matches.append(k)
             solution.append(joined)
             dictionary[joined] = tuple(matches)
-    # pprint(dictionary)
-    return dictionary
+
+    pprint('--converting to json friendly object--')
+    friendly = {}
+    for i in dictionary:
+        newKey = ''
+        for j in i:
+            newKey += j + ' '
+        friendly[newKey] = list(dictionary[i])
+    return friendly
 
