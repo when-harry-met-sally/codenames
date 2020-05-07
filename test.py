@@ -31,6 +31,7 @@ dictionary = handleArgs()
 # print('-----')
 start = time.time()
 solution = solve(dictionary)
+print(len(solution))
 end = time.time()
 
 print(end-start)
