@@ -35,7 +35,7 @@ def solve(dictionary):
             matches = []
             for k in dictionary[a]:
                 for l in dictionary[b]:
-                    if k == l:
+                    if k['item'] == l['item']:
                         matches.append(k)
             solution.append(joined)
             dictionary[joined] = tuple(matches)
