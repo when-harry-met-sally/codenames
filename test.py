@@ -23,7 +23,6 @@ def handleArgs():
 # dictionary = handleArgs()
 
 start = time.time()
-
 solution = solve(dictionary)
 end = time.time()
 duration = end-start
